@@ -24,7 +24,7 @@ namespace SoaProductApp
             {
                 Console.WriteLine($"Id: {pair.Key}, {pair.Value}");
             }
-            Console.WriteLine();
+            Console.WriteLine("------------");
 
             Console.WriteLine(service.FindProduct(1));
 
@@ -34,8 +34,17 @@ namespace SoaProductApp
             {
                 Console.WriteLine($"Id: {pair.Key}, {pair.Value}");
             }
+        }
 
-
+        static void showMenu()
+        {
+            Console.WriteLine("Please enter an action:");
+            Console.WriteLine("1. Create a product");
+            Console.WriteLine("2. Find a product");
+            Console.WriteLine("3. Show all products");
+            Console.WriteLine("4. Update a product");
+            Console.WriteLine("5. Delete a product");
+            Console.WriteLine("6. Exit");
         }
     }
 }
