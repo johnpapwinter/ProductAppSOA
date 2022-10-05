@@ -1,50 +1,16 @@
-﻿using SoaProductApp.DAO;
-using SoaProductApp.DTO;
-using SoaProductApp.Model;
-using SoaProductApp.Service;
+﻿using SoaProductApp.Controller;
+
 
 namespace SoaProductApp
 {
     internal class Program
     {
-        static readonly ProductDaoImpl dao = new ProductDaoImpl();
-        static readonly ProductServiceImpl service = new ProductServiceImpl(dao);
+        
         static void Main(string[] args)
         {
-            ProductDTO product1 = new() { Name = "chocolate", Price = 5.5, Quantity = 2};
-            ProductDTO product2 = new() { Name = "milk", Price = 4.5, Quantity = 3 };
-            ProductDTO product3 = new() { Name = "bread", Price = 2.0, Quantity = 1 };
-
-            service.InsertProduct(product1);
-            service.InsertProduct(product2);
-            service.InsertProduct(product3);
-
-            Console.WriteLine("Total products in the shop:");
-            foreach(KeyValuePair<int, Product> pair in service.GetAll())
-            {
-                Console.WriteLine($"Id: {pair.Key}, {pair.Value}");
-            }
-            Console.WriteLine("------------");
-
-            Console.WriteLine(service.FindProduct(1));
-
-            service.DeleteProduct(3);
-            Console.WriteLine("Total products in the shop:");
-            foreach (KeyValuePair<int, Product> pair in service.GetAll())
-            {
-                Console.WriteLine($"Id: {pair.Key}, {pair.Value}");
-            }
+            Controller.Controller controller = new();
+            controller.BusinessLogicHandler();
         }
 
-        static void showMenu()
-        {
-            Console.WriteLine("Please enter an action:");
-            Console.WriteLine("1. Create a product");
-            Console.WriteLine("2. Find a product");
-            Console.WriteLine("3. Show all products");
-            Console.WriteLine("4. Update a product");
-            Console.WriteLine("5. Delete a product");
-            Console.WriteLine("6. Exit");
-        }
     }
 }
